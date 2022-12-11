@@ -1,9 +1,9 @@
 -- utf8
 vim.g.encoding = "UTF-8"
 vim.o.fileencoding = 'utf-8'
--- jkhl 移动时光标周围保留8行
-vim.o.scrolloff = 8
-vim.o.sidescrolloff = 8
+-- jkhl 移动时光标周围保留4行
+vim.o.scrolloff = 4
+vim.o.sidescrolloff = 4
 -- 使用相对行号
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -22,8 +22,8 @@ vim.o.shiftround = true
 vim.o.shiftwidth = 2
 vim.bo.shiftwidth = 2
 -- 空格替代tab
-vim.o.expandtab = true
-vim.bo.expandtab = true
+-- vim.o.expandtab = true
+-- vim.bo.expandtab = true
 -- 新行对齐当前行
 vim.o.autoindent = true
 vim.bo.autoindent = true
@@ -66,8 +66,8 @@ vim.o.background = "dark"
 vim.o.termguicolors = true
 vim.opt.termguicolors = true
 -- 不可见字符的显示，这里只把空格显示为一个点
-vim.o.list = true
-vim.o.listchars = "space:·"
+-- vim.o.list = true
+-- vim.o.listchars = "space:·"
 -- 补全增强
 vim.o.wildmenu = true
 -- Dont' pass messages to |ins-completin menu|
