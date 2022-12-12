@@ -19,8 +19,12 @@ bufferline.setup({
         text = "File Explorer",
         highlight = "Directory",
         text_align = "left",
-      },
+			},
     },
+		-- bufferline numbers
+		numbers = function(opts)
+			return string.format('%s', opts.ordinal)
+		end,
     -- 使用 nvim 内置 LSP  后续课程会配置
     diagnostics = "nvim_lsp",
     -- 可选，显示 LSP 报错图标

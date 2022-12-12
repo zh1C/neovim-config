@@ -15,6 +15,7 @@ packer.startup({
 	}
 	-- which-key
 	use 'folke/which-key.nvim'
+	-- bufferline
 	use {
 		"akinsho/bufferline.nvim",
 		tag = "v3.*",
@@ -23,6 +24,7 @@ packer.startup({
 			"moll/vim-bbye",
 		},
 	}
+	-- lualine
 	use {
 		"nvim-lualine/lualine.nvim",
 		requires = {
@@ -30,6 +32,18 @@ packer.startup({
 		},
 	}
 	use 'arkav/lualine-lsp-progress'
+	-- telescope
+	use {
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.0",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	}
+	-- dashboard
+	use 'glepnir/dashboard-nvim'
+	-- project
+	use 'ahmedkhalf/project.nvim'
   end,
 	config = {
 		display = {

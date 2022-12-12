@@ -8,11 +8,12 @@ end
 local list_keys = require('keybindings').nvimTreeList
 nvim_tree.setup({
 	-- project plugin 需要这样设置
-	update_cwd = true,
-	update_focused_file = {
-			enable = true,
-			update_cwd = true,
-	},
+	sync_root_with_cwd = true,
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = true
+  },
 	-- 隐藏 .文件
 	filters = {
 			dotfiles = true,
