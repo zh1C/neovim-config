@@ -1,26 +1,26 @@
-local status, lspconfig = pcall(require, "lspconfig")
+local status, lspconfig = pcall(require, 'lspconfig')
 if not status then
-	vim.notify("没有找到 lspconfig")
-	return
+  vim.notify('没有找到 lspconfig')
+  return
 end
 -- :h mason-default-settings
-require("mason").setup({
+require('mason').setup({
   ui = {
     icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
+      package_installed = '✓',
+      package_pending = '➜',
+      package_uninstalled = '✗',
     },
   },
 })
 -- mason-lspconfig uses the `lspconfig` server names in the APIs it exposes - not `mason.nvim` package names
 -- https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md
-require("mason-lspconfig").setup({
+require('mason-lspconfig').setup({
   -- 确保安装，根据需要填写
   ensure_installed = {
-    "sumneko_lua",
-    "gopls",
-		"pyright",
+    'sumneko_lua',
+    'gopls',
+    'pyright',
   },
 })
 
@@ -28,14 +28,14 @@ require("mason-lspconfig").setup({
 -- { key: 服务器名， value: 配置文件 }
 -- 存放 lsp server 配置文件
 -- key 必须为下列网址列出的 server name，不可以随便写
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers 
+-- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local servers = {
-  sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
-  gopls = require("lsp.config.gopls"),
+  sumneko_lua = require('lsp.config.lua'), -- lua/lsp/config/lua.lua
+  gopls = require('lsp.config.gopls'),
 }
 
 for name, config in pairs(servers) do
-  if config ~= nil and type(config) == "table" then
+  if config ~= nil and type(config) == 'table' then
     -- 自定义初始化配置文件必须实现on_setup 方法
     config.on_setup(lspconfig[name])
   else
@@ -43,4 +43,3 @@ for name, config in pairs(servers) do
     lspconfig[name].setup({})
   end
 end
-
