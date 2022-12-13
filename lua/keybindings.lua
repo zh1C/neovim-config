@@ -53,6 +53,60 @@ pluginKeys.telescopeList = {
 		["<C-c>"] = "close",
 	},
 }
+-- nvim-cmp 自动补全
+pluginKeys.cmp = function(cmp)
+  local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  end
+
+  local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
+	return {
+		-- 出现补全
+		["<C-i>"] = cmp.mapping(cmp.mapping.complete(), {"i", "c"}),
+		-- 取消
+		["<C-,>"] = cmp.mapping({
+				i = cmp.mapping.abort(),
+				c = cmp.mapping.close()
+		}),
+		-- 上一个
+		["<C-k>"] = cmp.mapping.select_prev_item(),
+		-- 下一个
+		["<C-j>"] = cmp.mapping.select_next_item(),
+		-- 确认
+		["<CR>"] = cmp.mapping.confirm({
+				select = true,
+				behavior = cmp.ConfirmBehavior.Replace
+		}),
+		-- 如果窗口内容太多，可以滚动
+		["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), {"i", "c"}),
+		["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), {"i", "c"}),
+    -- Super Tab
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      end
+    end, {"i", "s"}),
+
+    ["<S-Tab>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      end
+    end, {"i", "s"})
+    -- end of super Tab
+	}
+end
+
 
 -- use which-key mapping
 local status, wk = pcall(require, "which-key")
@@ -102,15 +156,15 @@ wk.register({
 		n = {":BufferLineCycleNext<CR>", "Next buffer", mode="n", opt},
 		d = {":Bdelete!<CR>", "Kill buffer", mode="n", opt},
 		b = {":Telescope buffers<CR>", "List buffers", mode="n", opt},
-		["1"] = {":BufferLineGoToBuffer 1<CR>", "Go to buffer 1", mode="n", opt},	
-		["2"] = {":BufferLineGoToBuffer 2<CR>", "Go to buffer 2", mode="n", opt},	
-		["3"] = {":BufferLineGoToBuffer 3<CR>", "Go to buffer 3", mode="n", opt},	
-		["4"] = {":BufferLineGoToBuffer 4<CR>", "Go to buffer 4", mode="n", opt},	
-		["5"] = {":BufferLineGoToBuffer 5<CR>", "Go to buffer 5", mode="n", opt},	
-		["6"] = {":BufferLineGoToBuffer 6<CR>", "Go to buffer 6", mode="n", opt},	
-		["7"] = {":BufferLineGoToBuffer 7<CR>", "Go to buffer 7", mode="n", opt},	
-		["8"] = {":BufferLineGoToBuffer 8<CR>", "Go to buffer 8", mode="n", opt},	
-		["9"] = {":BufferLineGoToBuffer 9<CR>", "Go to buffer 9", mode="n", opt},	
+		["1"] = {":BufferLineGoToBuffer 1<CR>", "Go to buffer 1", mode="n", opt},
+		["2"] = {":BufferLineGoToBuffer 2<CR>", "Go to buffer 2", mode="n", opt},
+		["3"] = {":BufferLineGoToBuffer 3<CR>", "Go to buffer 3", mode="n", opt},
+		["4"] = {":BufferLineGoToBuffer 4<CR>", "Go to buffer 4", mode="n", opt},
+		["5"] = {":BufferLineGoToBuffer 5<CR>", "Go to buffer 5", mode="n", opt},
+		["6"] = {":BufferLineGoToBuffer 6<CR>", "Go to buffer 6", mode="n", opt},
+		["7"] = {":BufferLineGoToBuffer 7<CR>", "Go to buffer 7", mode="n", opt},
+		["8"] = {":BufferLineGoToBuffer 8<CR>", "Go to buffer 8", mode="n", opt},
+		["9"] = {":BufferLineGoToBuffer 9<CR>", "Go to buffer 9", mode="n", opt},
 	},
 }, { prefix = "<leader>" })
 
@@ -130,6 +184,63 @@ wk.register({
 	},
 }, { prefix = "<leader>" })
 
+-- install shortcuts
+wk.register({
+	i = {
+		name = "install",
+		p = {":TSInstallInfo<CR>", "language parser info", mode="n", opt},
+		s = {":Mason<CR>", "language server", mode="n", opt},
+	},
+}, { prefix = "<leader>" })
+
+-- lsp 回调函数快捷键设置,use which-key plugin
+pluginKeys.mapLSP = function(mapbuf)
+  -- rename
+	-- mapbuf("r", "<cmd>lua vim.lsp.buf.rename()<CR>", "rename", "n")
+	mapbuf("r", ":Lspsaga rename<CR>", "rename", "n")
+
+  -- code action Lspsaga替换
+	-- mapbuf("a", "<cmd>lua vim.lsp.buf.code_action()<CR>", "code action", "n")
+	mapbuf("a", ":Lspsaga code_action<CR>", "code action", "n")
+
+	-- Peek Definition
+	-- -- you can edit the definition file in this floatwindow
+	-- -- also support open/vsplit/etc operation check definition_action_keys
+	-- -- support tagstack C-t jump back
+	mapbuf("p", ":Lspsaga peek_definition<CR>", "peek definition", "n")
+
+  -- Lsp finder find the symbol definition implement reference
+	-- if there is no implement it will hide
+	-- when you use action in finder like open vsplit then you can
+	-- use <C-t> to jump back
+	mapbuf("f", ":Lspsaga lsp_finder<CR>", "lsp finder", "n")
+
+	mapbuf("d", "<cmd>lua vim.lsp.buf.definition()<CR>", "go definition", "n")
+	mapbuf("i", "<cmd>lua vim.lsp.buf.implementation()<CR>", "go implementation", "n")
+	mapbuf("e", "<cmd>lua vim.lsp.buf.refereances()<CR>", "go refereances", "n")
+	mapbuf("D", "<cmd>lua vim.lsp.buf.declaration()<CR>", "go declaration", "n")
+	-- mapbuf("h", "<cmd>lua vim.lsp.buf.hover()<CR>", "hover doc", "n")
+	mapbuf("h", ":Lspsaga hover_doc<CR>", "hover doc", "n")
+
+  -- diagnostic
+	-- mapbuf("p", "<cmd>lua vim.diagnostic.open_float()<CR>", "open float", "n")
+	mapbuf("s", ":Lspsaga show_line_diagnostics<CR>", "show line diagnostic", "n")
+	-- Diagnostic jump can use `<c-o>` to jump back
+	-- mapbuf("k", "<cmd>lua vim.diagnostic.goto_prev()<CR>", "goto prev", "n")
+	mapbuf("k", ":Lspsaga diagnostic_jump_prev<CR>", "diagnostic jump prev", "n")
+	-- mapbuf("j", "<cmd>lua vim.diagnostic.goto_next()<CR>", "goto next", "n")
+	mapbuf("j", ":Lspsaga diagnostic_jump_next<CR>", "diagnostic jump next", "n")
+
+	mapbuf("=", "<cmd>lua vim.lsp.buf.formatting()<CR>", "formatting", "n")
+  -- code action
+  -- 没用到
+  -- mapbuf('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opt)
+  -- mapbuf("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opt)
+  -- mapbuf('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opt)
+  -- mapbuf('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opt)
+  -- mapbuf('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opt)
+  -- mapbuf('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opt)
+end
 
 -- 返回nvim-tree 的快捷键列表
 return pluginKeys
