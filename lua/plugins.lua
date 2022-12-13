@@ -3,18 +3,29 @@ packer.startup({
   function(use)
     -- Packer 可以管理自己本身
     use('wbthomason/packer.nvim')
-    -- 插件列表
+    ------------------------plugins-------------------------
     -- onedark colorscheme
     use('navarasu/onedark.nvim')
+
     -- nvim-tree
     use({
       'nvim-tree/nvim-tree.lua',
       requires = {
         'nvim-tree/nvim-web-devicons', -- optional, for file icons
       },
+      config = function()
+        require('plugin-config.nvim-tree')
+      end,
     })
+
     -- which-key
-    use('folke/which-key.nvim')
+    use({
+      'folke/which-key.nvim',
+      config = function()
+        require('plugin-config.which-key')
+      end,
+    })
+
     -- bufferline
     use({
       'akinsho/bufferline.nvim',
@@ -23,15 +34,23 @@ packer.startup({
         'nvim-tree/nvim-web-devicons',
         'moll/vim-bbye',
       },
+      config = function()
+        require('plugin-config.bufferline')
+      end,
     })
+
     -- lualine
     use({
       'nvim-lualine/lualine.nvim',
       requires = {
         'nvim-tree/nvim-web-devicons',
       },
+      config = function()
+        require('plugin-config.lualine')
+      end,
     })
     use('arkav/lualine-lsp-progress')
+
     -- telescope
     use({
       'nvim-telescope/telescope.nvim',
@@ -39,19 +58,73 @@ packer.startup({
       requires = {
         'nvim-lua/plenary.nvim',
       },
+      config = function()
+        require('plugin-config.telescope')
+      end,
     })
+
     -- dashboard
-    use('glepnir/dashboard-nvim')
+    use({
+      'glepnir/dashboard-nvim',
+      config = function()
+        require('plugin-config.dashboard')
+      end,
+    })
+
     -- project
-    use('ahmedkhalf/project.nvim')
-    -- treesitter
+    use({
+      'ahmedkhalf/project.nvim',
+      config = function()
+        require('plugin-config.project')
+      end,
+    })
+
+    -- nvim-treesitter
     use({
       'nvim-treesitter/nvim-treesitter',
       run = function()
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
         ts_update()
       end,
+      config = function()
+        require('plugin-config.nvim-treesitter')
+      end,
     })
+
+    -- nvim-autopairs
+    use({
+      'windwp/nvim-autopairs',
+      config = function()
+        require('plugin-config.nvim-autopairs')
+      end,
+    })
+
+    -- Comment.nvim
+    use({
+      'numToStr/Comment.nvim',
+      config = function()
+        require('plugin-config.comment')
+      end,
+    })
+
+    -- nvim-surround
+    use({
+      'kylechui/nvim-surround',
+      config = function()
+        require('plugin-config.surround')
+      end,
+    })
+
+    -- jump hop
+    use({
+      'phaazon/hop.nvim',
+      branch = 'v2',
+      config = function()
+        require('plugin-config.hop')
+      end,
+    })
+
+    ---------------------------LSP---------------------------------
     -- lsp config
     use('neovim/nvim-lspconfig')
     -- lsp installer
@@ -70,14 +143,21 @@ packer.startup({
     use('hrsh7th/cmp-nvim-lsp-signature-help') -- { name = 'nvim_lsp_signature_help' }
     -- 常见编程语言代码段
     use('rafamadriz/friendly-snippets')
+
     -- ui
     use('onsails/lspkind-nvim')
     use({
       'glepnir/lspsaga.nvim',
       branch = 'main',
+      config = function()
+        require('plugin-config.lspsaga')
+      end,
     })
+
     -- 代码格式化
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' })
+
+    ------------------------ End plugin------------------------
   end,
   config = {
     display = {

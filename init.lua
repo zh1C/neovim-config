@@ -6,18 +6,10 @@ require('keybindings')
 require('plugins')
 -- 主题设置
 require('colorscheme')
--- plugin's config
-require('plugin-config.which-key')
-require('plugin-config.nvim-tree')
-require('plugin-config.bufferline')
-require('plugin-config.lualine')
-require('plugin-config.telescope')
-require('plugin-config.dashboard')
-require('plugin-config.project')
-require('plugin-config.nvim-treesitter')
-require('plugin-config.lspsaga')
 -- lsp
 require('lsp.setup')
+-- 自动补全
 require('lsp.cmp')
 require('lsp.ui')
+-- 格式化
 require('lsp.null-ls')

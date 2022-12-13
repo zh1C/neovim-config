@@ -59,10 +59,6 @@ pluginKeys.cmp = function(cmp)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
   end
 
-  local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-  end
   return {
     -- 出现补全
     ['<C-i>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -83,27 +79,19 @@ pluginKeys.cmp = function(cmp)
     -- 如果窗口内容太多，可以滚动
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    -- Super Tab
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif vim.fn['vsnip#available'](1) == 1 then
+    -- 自定义代码段跳转到下一个参数
+    ['<C-l>'] = cmp.mapping(function(_)
+      if vim.fn['vsnip#available'](1) == 1 then
         feedkey('<Plug>(vsnip-expand-or-jump)', '')
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
       end
     end, { 'i', 's' }),
 
-    ['<S-Tab>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif vim.fn['vsnip#jumpable'](-1) == 1 then
+    -- 自定义代码段跳转到上一个参数
+    ['<C-h>'] = cmp.mapping(function()
+      if vim.fn['vsnip#jumpable'](-1) == 1 then
         feedkey('<Plug>(vsnip-jump-prev)', '')
       end
     end, { 'i', 's' }),
-    -- end of super Tab
   }
 end
 
@@ -143,6 +131,10 @@ wk.register({
     s = { ':sp<CR>', 'split window below', mode = 'n', opt },
     d = { '<C-w>c', 'delete currrent window', mode = 'n', opt },
     o = { '<C-w>o', 'delete other windows', mode = 'n', opt },
+    l = { '<C-w>l', 'go to the right window', mode = 'n', opt },
+    h = { '<C-w>h', 'go to the left window', mode = 'n', opt },
+    j = { '<C-w>j', 'go to the down window', mode = 'n', opt },
+    k = { '<C-w>k', 'go to the up window', mode = 'n', opt },
   },
 }, { prefix = '<leader>' })
 
@@ -191,6 +183,70 @@ wk.register({
     s = { ':Mason<CR>', 'language server', mode = 'n', opt },
     n = { ':NullLsInfo<CR>', 'null-ls info', mode = 'n', opt },
     l = { ':LspInfo<CR>', 'language server info', mode = 'n', opt },
+  },
+}, { prefix = '<leader>' })
+
+-- comment shortcuts
+-- setting in file ./plugin-config/comment.lua
+wk.register({
+  c = {
+    name = 'comments',
+  },
+}, { prefix = '<leader>' })
+
+-- surround shortcuts
+-- setting in file ./plugin-config/surround.lua
+wk.register({
+  o = {
+    name = 'surround',
+  },
+}, { prefix = '<leader>' })
+
+-- jump hop shortcuts
+local hop = require('hop')
+wk.register({
+  j = {
+    name = 'jump',
+    l = {
+      function()
+        hop.hint_lines()
+      end,
+      'line',
+      mode = 'n',
+      opt,
+    },
+    c = {
+      function()
+        hop.hint_char2()
+      end,
+      'char2',
+      mode = 'n',
+      opt,
+    },
+    j = {
+      function()
+        hop.hint_char1({ current_line_only = true })
+      end,
+      'char current line',
+      mode = 'n',
+      opt,
+    },
+    p = {
+      function()
+        hop.hint_patterns()
+      end,
+      'patterns',
+      mode = 'n',
+      opt,
+    },
+    w = {
+      function()
+        hop.hint_words()
+      end,
+      'words',
+      mode = 'n',
+      opt,
+    },
   },
 }, { prefix = '<leader>' })
 
