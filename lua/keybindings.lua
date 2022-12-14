@@ -10,6 +10,8 @@ local opt = { noremap = true, silent = true }
 map('i', 'jk', '<ESC>', opt)
 -- 退出visual mode到normal mode
 map('v', 'jk', '<ESC>', opt)
+-- 退出terminal mode 到normal mode
+map('t', 'jk', '<C-\\><C-n>', opt)
 
 -- nvim-tree 插件快捷键
 local pluginKeys = {}
@@ -102,6 +104,30 @@ if not status then
   return
 end
 
+-- toggleterm
+local termList = require('plugin-config.toggleterm')
+wk.register({
+  t = {
+    name = 'Terminal',
+    f = {
+      function()
+        termList.toggleA()
+      end,
+      'open/close float Terminal',
+      mode = 'n',
+      opt,
+    },
+    h = {
+      function()
+        termList.toggleH()
+      end,
+      'open/close horizontal Terminal',
+      mode = 'n',
+      opt,
+    },
+  },
+}, { prefix = '<leader>' })
+
 -- file shortcuts
 wk.register({
   f = {
@@ -178,11 +204,12 @@ wk.register({
 -- install shortcuts
 wk.register({
   i = {
-    name = 'install\\info',
+    name = 'install/info',
     p = { ':TSInstallInfo<CR>', 'language parser info', mode = 'n', opt },
     s = { ':Mason<CR>', 'language server', mode = 'n', opt },
     n = { ':NullLsInfo<CR>', 'null-ls info', mode = 'n', opt },
     l = { ':LspInfo<CR>', 'language server info', mode = 'n', opt },
+    u = { ':PackerSync<CR>', 'update plugins', mode = 'n', opt },
   },
 }, { prefix = '<leader>' })
 

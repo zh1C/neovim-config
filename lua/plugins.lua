@@ -124,6 +124,14 @@ packer.startup({
       end,
     })
 
+    -- toggleterm
+    use({
+      'akinsho/toggleterm.nvim',
+      config = function()
+        require('plugin-config.toggleterm')
+      end,
+    })
+
     ---------------------------LSP---------------------------------
     -- lsp config
     use('neovim/nvim-lspconfig')
@@ -169,12 +177,12 @@ packer.startup({
 })
 
 -- 每次保存 plugin.lua 自动安装插件
-pcall(
-  vim.cmd,
-  [[
-		augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile> | PackerSync
-		augroup end
-	]]
-)
+-- pcall(
+--   vim.cmd,
+--   [[
+-- 		augroup packer_user_config
+-- 		autocmd!
+-- 		autocmd BufWritePost plugins.lua source <afile> | PackerSync
+-- 		augroup end
+-- 	]]
+-- )
