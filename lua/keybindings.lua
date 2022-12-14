@@ -128,6 +128,36 @@ wk.register({
   },
 }, { prefix = '<leader>' })
 
+-- git shortcuts
+wk.register({
+  g = {
+    name = 'git',
+    g = {
+      function()
+        termList.toggleG()
+      end,
+      'open lazygit',
+      mode = 'n',
+      opt,
+    },
+  },
+}, { prefix = '<leader>' })
+-- gitsigns shortcuts
+pluginKeys.gitsigns_on_attach = function(bufnr)
+  local gs = package.loaded.gitsigns
+
+  local opts = { buffer = bufnr, mode = 'n', opt }
+
+  wk.register({
+    g = {
+      name = 'git',
+      v = { gs.preview_hunk, 'preview hunk', opts },
+      n = { gs.next_hunk, 'next hunk', opts },
+      p = { gs.prev_hunk, 'prev hunk', opts },
+    },
+  }, { prefix = '<leader>' })
+end
+
 -- file shortcuts
 wk.register({
   f = {

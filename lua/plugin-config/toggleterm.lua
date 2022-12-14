@@ -8,6 +8,15 @@ toggleterm.setup({})
 
 local Terminal = require('toggleterm.terminal').Terminal
 
+local lazygit = Terminal:new({
+  cmd = 'lazygit',
+  dir = 'git_dir',
+  direction = 'float',
+  float_opts = {
+    border = 'double',
+  },
+})
+
 -- custom float terminal
 local ta = Terminal:new({
   direction = 'float',
@@ -39,6 +48,10 @@ M.toggleH = function()
     return
   end
   th:open()
+end
+
+M.toggleG = function()
+  lazygit:toggle()
 end
 
 return M

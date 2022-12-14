@@ -18,6 +18,14 @@ packer.startup({
       end,
     })
 
+    -- auto-save
+    -- use({
+    --   'Pocco81/auto-save.nvim',
+    --   config = function()
+    --     require('plugin-config.auto-save')
+    --   end,
+    -- })
+
     -- gitsigns
     use({
       'lewis6991/gitsigns.nvim',

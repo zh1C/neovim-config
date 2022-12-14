@@ -18,5 +18,5 @@ gitsigns.setup({
   current_line_blame_opts = {
     delay = 500,
   },
-  word_diff = true, -- Toggle with `:Gitsigns toggle_word_diff`
+  on_attach = require('keybindings').gitsigns_on_attach,
 })
