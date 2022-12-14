@@ -18,6 +18,14 @@ packer.startup({
       end,
     })
 
+    -- gitsigns
+    use({
+      'lewis6991/gitsigns.nvim',
+      config = function()
+        require('plugin-config.gitsigns')
+      end,
+    })
+
     -- which-key
     use({
       'folke/which-key.nvim',

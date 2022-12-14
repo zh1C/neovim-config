@@ -6,10 +6,10 @@ local map = vim.api.nvim_set_keymap
 -- 复用opt参数
 local opt = { noremap = true, silent = true }
 
--- 退出insert mode到normal mode
+-- 退出insert mode, visual mode, command line到normal mode
 map('i', 'jk', '<ESC>', opt)
--- 退出visual mode到normal mode
 map('v', 'jk', '<ESC>', opt)
+map('c', 'jk', '<ESC>', opt)
 -- 退出terminal mode 到normal mode
 map('t', 'jk', '<C-\\><C-n>', opt)
 
