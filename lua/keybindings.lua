@@ -61,9 +61,9 @@ pluginKeys.cmp = function(cmp)
 
   return {
     -- 出现补全
-    ['<C-i>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
+    ['<C-,>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
     -- 取消
-    ['<C-,>'] = cmp.mapping({
+    ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
