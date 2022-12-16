@@ -13,6 +13,10 @@ map('c', 'jk', '<ESC>', opt)
 -- 退出terminal mode 到normal mode
 map('t', 'jk', '<C-\\><C-n>', opt)
 
+-- 插入模式左右移动的快捷键
+map('i', '<C-f>', '<Right>', opt)
+map('i', '<C-b>', '<Left>', opt)
+
 -- nvim-tree 插件快捷键
 local pluginKeys = {}
 -- nvim-tree 列表快捷键
