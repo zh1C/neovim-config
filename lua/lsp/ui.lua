@@ -1,8 +1,12 @@
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = {
+    source = true,
+    prefix = '●',
+  },
   signs = true,
   -- 在输入模式下也更新提示，设置为 true 也许会影响性能
   update_in_insert = true,
+  sevirity_sort = true,
 })
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 for type, icon in pairs(signs) do
