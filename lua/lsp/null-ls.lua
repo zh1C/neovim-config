@@ -5,6 +5,7 @@ if not status then
 end
 
 local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
 local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 
 null_ls.setup({
@@ -27,6 +28,11 @@ null_ls.setup({
     formatting.yapf,
     formatting.autoflake,
     formatting.isort,
+
+    -- diagnostics
+    -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+    diagnostics.flake8,
+    diagnostics.golangci_lint,
   },
   -- 保存自动格式化
   -- you can reuse a shared lspconfig on_attach callback here

@@ -240,7 +240,7 @@ wk.register({
   i = {
     name = 'install/info',
     p = { ':TSInstallInfo<CR>', 'language parser info', mode = 'n', opt },
-    m = { ':Mason<CR>', 'language server', mode = 'n', opt },
+    m = { ':Mason<CR>', 'mason lsp', mode = 'n', opt },
     n = { ':NullLsInfo<CR>', 'null-ls info', mode = 'n', opt },
     l = { ':LspInfo<CR>', 'language server info', mode = 'n', opt },
     s = { ':PackerSync<CR>', 'update and compile plugins', mode = 'n', opt },
