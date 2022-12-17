@@ -1,6 +1,6 @@
-local status, indent_blankline = pcall(require, 'indent-blankline')
+local status, indent_blankline = pcall(require, 'indent_blankline')
 if not status then
-  vim.notify('没有找到 hop')
+  vim.notify('没有找到 indent_blankline')
   return
 end
 

@@ -14,7 +14,16 @@ lualine.setup({
   extensions = { 'nvim-tree', 'toggleterm' },
   sections = {
     lualine_c = {
-      'filename',
+      {
+        'filename',
+        file_status = true,
+        symbols = {
+          modified = '[+]', -- Text to show when the file is modified.
+          readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
+          unnamed = '[No Name]', -- Text to show for unnamed buffers.
+          newfile = '[New]', -- Text to show for new created file before first writting
+        },
+      },
       {
         'lsp_progress',
         spinner_symbols = { ' ', ' ', ' ', ' ', ' ', ' ' },
