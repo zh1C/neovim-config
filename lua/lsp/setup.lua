@@ -32,6 +32,7 @@ require('mason-lspconfig').setup({
 local servers = {
   sumneko_lua = require('lsp.config.lua'), -- lua/lsp/config/lua.lua
   gopls = require('lsp.config.gopls'),
+  pyright = require('lsp.config.pyright'),
 }
 
 for name, config in pairs(servers) do

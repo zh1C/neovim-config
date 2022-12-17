@@ -13,10 +13,20 @@ null_ls.setup({
   -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
   sources = {
     -- Formatting ---------------------
-    -- StyLua
+    -- StyLua formatting
+    -- brew install stylua
     formatting.stylua,
+
+    -- golang fotmatting
+    -- go install ......
     formatting.gofmt,
     formatting.goimports,
+
+    -- python formatting
+    -- pip install autoflake isort yapf
+    formatting.yapf,
+    formatting.autoflake,
+    formatting.isort,
   },
   -- 保存自动格式化
   -- you can reuse a shared lspconfig on_attach callback here

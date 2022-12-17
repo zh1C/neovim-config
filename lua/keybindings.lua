@@ -240,10 +240,14 @@ wk.register({
   i = {
     name = 'install/info',
     p = { ':TSInstallInfo<CR>', 'language parser info', mode = 'n', opt },
-    s = { ':Mason<CR>', 'language server', mode = 'n', opt },
+    m = { ':Mason<CR>', 'language server', mode = 'n', opt },
     n = { ':NullLsInfo<CR>', 'null-ls info', mode = 'n', opt },
     l = { ':LspInfo<CR>', 'language server info', mode = 'n', opt },
-    u = { ':PackerSync<CR>', 'update plugins', mode = 'n', opt },
+    s = { ':PackerSync<CR>', 'update and compile plugins', mode = 'n', opt },
+    u = { ':PackerUpdate<CR>', 'update and install plugins', mode = 'n', opt },
+    c = { ':PackerCompile<CR>', 'compile plugins configuration', mode = 'n', opt },
+    w = { ':PackerStatus<CR>', 'show list of installed plugins', mode = 'n', opt },
+    r = { ':PackerClean<CR>', 'Remove disabled or unused plugins', mode = 'n', opt },
   },
 }, { prefix = '<leader>' })
 
