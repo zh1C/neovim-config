@@ -26,6 +26,14 @@ packer.startup({
     --   end,
     -- })
 
+    -- indent-blankline
+    use({
+      'lukas-reineke/indent-blankline.nvim',
+      config = function()
+        require('plugin-config.indent-blankline')
+      end,
+    })
+
     -- gitsigns
     use({
       'lewis6991/gitsigns.nvim',
