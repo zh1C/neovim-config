@@ -158,6 +158,7 @@ pluginKeys.gitsigns_on_attach = function(bufnr)
       v = { gs.preview_hunk, 'preview hunk', opts },
       n = { gs.next_hunk, 'next hunk', opts },
       p = { gs.prev_hunk, 'prev hunk', opts },
+      r = { ':Gitsigns reset_hunk<CR>', 'reset hunk', opts },
     },
   }, { prefix = '<leader>' })
 end
