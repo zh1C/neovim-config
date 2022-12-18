@@ -13,7 +13,7 @@ local opts = {
       analyses = {
         unusedparams = true,
       },
-      staticcheck = true,
+      staticcheck = false,
     },
   },
 }

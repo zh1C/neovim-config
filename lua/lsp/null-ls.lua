@@ -32,7 +32,7 @@ null_ls.setup({
     -- diagnostics
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     diagnostics.flake8,
-    diagnostics.golangci_lint,
+    diagnostics.staticcheck,
   },
   -- 保存自动格式化
   -- you can reuse a shared lspconfig on_attach callback here
