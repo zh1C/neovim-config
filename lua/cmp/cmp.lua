@@ -28,7 +28,7 @@ cmp.setup({
   -- 快捷键设置
   mapping = require('keybindings').cmp(cmp),
   -- 使用lspkind-nvim显示类型图标 (新增)
-  formatting = require('lsp.ui').formatting,
+  formatting = require('cmp.ui').formatting,
 })
 
 -- / 查找模式使用 buffer 源

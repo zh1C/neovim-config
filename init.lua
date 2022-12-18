@@ -6,10 +6,12 @@ require('keybindings')
 require('plugins')
 -- 主题设置
 require('colorscheme')
+
 -- lsp
 require('lsp.setup')
--- 自动补全
-require('lsp.cmp')
-require('lsp.ui')
--- 格式化
-require('lsp.null-ls')
+
+-- cmp
+require('cmp.setup')
+
+-- formatting and diagnostic
+require('format.setup')
