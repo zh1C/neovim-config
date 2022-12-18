@@ -26,6 +26,14 @@ packer.startup({
     --   end,
     -- })
 
+    -- zen-mode
+    use({
+      'folke/zen-mode.nvim',
+      config = function()
+        require('plugin-config.zen-mode')
+      end,
+    })
+
     -- indent-blankline
     use({
       'lukas-reineke/indent-blankline.nvim',

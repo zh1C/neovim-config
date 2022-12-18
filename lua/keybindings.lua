@@ -237,6 +237,11 @@ wk.register({
   },
 }, { prefix = '<leader>' })
 
+-- zen-mode
+wk.register({
+  ['<leader>z'] = { ':ZenMode<CR>', 'open/close Zen-Mode', mode = 'n', opt },
+})
+
 -- install shortcuts
 wk.register({
   i = {
