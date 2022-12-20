@@ -322,6 +322,68 @@ wk.register({
   },
 }, { prefix = '<leader>' })
 
+-- dap shortcuts
+pluginKeys.mapDAP = function()
+  local dap = require('dap')
+  wk.register({
+    d = {
+      name = 'debug',
+      s = { "<cmd>lua require'dap'.continue()<cr>", 'Start' },
+      -- continue
+      c = {
+        function()
+          dap.continue()
+        end,
+        'continue run',
+        mode = 'n',
+        opt,
+      },
+      -- breakpoints
+      b = {
+        function()
+          dap.toggle_breakpoint()
+        end,
+        'toggle breakpoint',
+        mode = 'n',
+        opt,
+      },
+      B = {
+        function()
+          dap.clear_breakpoints()
+        end,
+        'clear breakpoints',
+        mode = 'n',
+        opt,
+      },
+      -- stepover, stepout, stepinto
+      n = {
+        function()
+          dap.step_over()
+        end,
+        'step over',
+        mode = 'n',
+        opt,
+      },
+      o = {
+        function()
+          dap.step_out()
+        end,
+        'step out',
+        mode = 'n',
+        opt,
+      },
+      i = {
+        function()
+          dap.step_into()
+        end,
+        'step into',
+        mode = 'n',
+        opt,
+      },
+    },
+  }, { prefix = '<leader>' })
+end
+
 -- lsp 回调函数快捷键设置,use which-key plugin
 pluginKeys.mapLSP = function(mapbuf)
   -- rename

@@ -15,3 +15,6 @@ require('cmp.setup')
 
 -- formatting and diagnostic
 require('format.setup')
+
+-- dap
+require('dap.setup')

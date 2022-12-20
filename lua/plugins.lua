@@ -170,6 +170,8 @@ packer.startup({
     -- lsp installer
     use('williamboman/mason.nvim')
     use('williamboman/mason-lspconfig.nvim')
+
+    --------------------------cmp----------------------------------
     -- 补全引擎
     use('hrsh7th/nvim-cmp')
     -- snippet 引擎
@@ -194,10 +196,15 @@ packer.startup({
       end,
     })
 
+    -------------------------format and diagnostic------------------
     -- 代码格式化
     use({ 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' })
 
-    ------------------------ End plugin------------------------
+    -------------------------dap------------------------------------
+    use({ 'mfussenegger/nvim-dap' })
+    use({ 'rcarriga/nvim-dap-ui' })
+
+    ------------------------ End plugin-----------------------------
   end,
   config = {
     display = {
