@@ -328,13 +328,40 @@ pluginKeys.mapDAP = function()
   wk.register({
     d = {
       name = 'debug',
-      s = { "<cmd>lua require'dap'.continue()<cr>", 'Start' },
+      s = {
+        function()
+          dap.continue()
+        end,
+        'Start',
+        mode = 'n',
+        opt,
+      },
+      q = {
+        function()
+          dap.close()
+          dap.terminate()
+          dap.clear_breakpoints()
+          require('dap.repl').close()
+          require('dapui').close({})
+        end,
+        'Quit',
+        mode = 'n',
+        opt,
+      },
+      r = {
+        function()
+          dap.repl.toggle()
+        end,
+        'Toggle repl',
+        mode = 'n',
+        opt,
+      },
       -- continue
       c = {
         function()
           dap.continue()
         end,
-        'continue run',
+        'Continue run',
         mode = 'n',
         opt,
       },
@@ -343,7 +370,7 @@ pluginKeys.mapDAP = function()
         function()
           dap.toggle_breakpoint()
         end,
-        'toggle breakpoint',
+        'Toggle breakpoint',
         mode = 'n',
         opt,
       },
@@ -351,7 +378,7 @@ pluginKeys.mapDAP = function()
         function()
           dap.clear_breakpoints()
         end,
-        'clear breakpoints',
+        'Clear breakpoints',
         mode = 'n',
         opt,
       },
@@ -360,7 +387,7 @@ pluginKeys.mapDAP = function()
         function()
           dap.step_over()
         end,
-        'step over',
+        'Step over',
         mode = 'n',
         opt,
       },
@@ -368,7 +395,7 @@ pluginKeys.mapDAP = function()
         function()
           dap.step_out()
         end,
-        'step out',
+        'Step out',
         mode = 'n',
         opt,
       },
@@ -376,7 +403,7 @@ pluginKeys.mapDAP = function()
         function()
           dap.step_into()
         end,
-        'step into',
+        'Step into',
         mode = 'n',
         opt,
       },
