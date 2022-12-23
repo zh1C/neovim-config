@@ -204,6 +204,9 @@ packer.startup({
     use({ 'mfussenegger/nvim-dap' })
     use({ 'rcarriga/nvim-dap-ui' })
 
+    -- lua dap
+    use({ 'jbyuki/one-small-step-for-vimkind' })
+
     ------------------------ End plugin-----------------------------
   end,
   config = {

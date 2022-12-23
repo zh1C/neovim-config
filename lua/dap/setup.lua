@@ -38,5 +38,11 @@ end
 -- golang dap config
 require('dap.config.dap-go').setup()
 
+-- python dap config
+require('dap.config.dap-python').setup()
+
+-- lua dap config
+require('dap.config.dap-lua').setup()
+
 -- keymapping
 require('keybindings').mapDAP()

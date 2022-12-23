@@ -325,9 +325,18 @@ wk.register({
 -- dap shortcuts
 pluginKeys.mapDAP = function()
   local dap = require('dap')
+  local osv = require('osv')
   wk.register({
     d = {
       name = 'debug',
+      l = {
+        function()
+          osv.launch({ port = 8086 })
+        end,
+        'Start lua debug',
+        mode = 'n',
+        opt,
+      },
       s = {
         function()
           dap.continue()
