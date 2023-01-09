@@ -203,6 +203,7 @@ packer.startup({
     -------------------------dap------------------------------------
     use({ 'mfussenegger/nvim-dap' })
     use({ 'rcarriga/nvim-dap-ui' })
+    use({ 'theHamsta/nvim-dap-virtual-text' })
 
     -- lua dap
     use({ 'jbyuki/one-small-step-for-vimkind' })

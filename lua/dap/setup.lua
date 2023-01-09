@@ -10,6 +10,12 @@ if not statu then
   return
 end
 
+local sta, vt = pcall(require, 'nvim-dap-virtual-text')
+if not sta then
+  vim.notify('没有找到 nvim-dap-virtual-text')
+  return
+end
+
 -- dap ui
 require('dap.dap-ui')
 
@@ -24,6 +30,8 @@ dapui.setup({
     toggle = 't',
   },
 })
+
+vt.setup({})
 
 dap.listeners.after.event_initialized['dapui_config'] = function()
   dapui.open({})
