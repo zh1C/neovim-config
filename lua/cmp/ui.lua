@@ -8,7 +8,7 @@ vim.diagnostic.config({
   update_in_insert = true,
   sevirity_sort = true,
 })
-local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
+local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
 for type, icon in pairs(signs) do
   local hl = 'DiagnosticSign' .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -33,30 +33,30 @@ lspkind.init({
   --
   -- default: {}
   symbol_map = {
-    Text = '',
-    Method = '',
-    Function = '',
+    Text = '󰉿',
+    Method = '󰆧',
+    Function = '󰊕',
     Constructor = '',
-    Field = 'ﰠ',
-    Variable = '',
-    Class = 'ﴯ',
+    Field = '󰜢',
+    Variable = '󰀫',
+    Class = '󰠱',
     Interface = '',
     Module = '',
-    Property = 'ﰠ',
-    Unit = '塞',
-    Value = '',
+    Property = '󰜢',
+    Unit = '󰑭',
+    Value = '󰎠',
     Enum = '',
-    Keyword = '',
+    Keyword = '󰌋',
     Snippet = '',
-    Color = '',
-    File = '',
-    Reference = '',
-    Folder = '',
+    Color = '󰏘',
+    File = '󰈙',
+    Reference = '󰈇',
+    Folder = '󰉋',
     EnumMember = '',
-    Constant = '',
-    Struct = 'פּ',
+    Constant = '󰏿',
+    Struct = '󰙅',
     Event = '',
-    Operator = '',
+    Operator = '󰆕',
     TypeParameter = '',
   },
 })
