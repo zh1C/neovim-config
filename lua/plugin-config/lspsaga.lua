@@ -1,19 +1,27 @@
 local saga = require('lspsaga')
-saga.init_lsp_saga({
+saga.setup({
   -- configuration
-  rename_action_quit = '<C-g>',
-  finder_action_keys = {
-    open = { 'o', '<CR>' },
-    vsplit = 's',
-    split = 'i',
-    tabe = 't',
-    quit = { 'q', '<ESC>' },
+  rename = {
+    quit = '<C-c>',
   },
-  code_action_keys = {
-    quit = 'q',
-    exec = '<CR>',
+  finder = {
+    keys = {
+      jump_to = 'p',
+      expand_or_jump = 'o',
+      vsplit = 's',
+      split = 'i',
+      tabe = 't',
+      tabnew = 'r',
+      quit = { 'q', '<ESC>' },
+    },
   },
-  definition_action_keys = {
+  code_action = {
+    keys = {
+      quit = 'q',
+      exec = '<CR>',
+    },
+  },
+  definition = {
     edit = '<C-c>o',
     vsplit = '<C-c>v',
     split = '<C-c>i',
