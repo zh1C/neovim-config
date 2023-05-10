@@ -34,7 +34,7 @@ lualine.setup({
       },
       {
         'lsp_progress',
-        spinner_symbols = { ' ', ' ', ' ', ' ', ' ', ' ' },
+        spinner_symbols = { '󰇊', '󰇋', '󰇌', '󰇍', '󰇎', '󰇏' },
       },
       {
         -- Lsp server name .

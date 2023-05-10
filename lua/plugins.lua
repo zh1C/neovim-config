@@ -173,6 +173,12 @@ packer.startup({
     use('williamboman/mason.nvim')
     use('williamboman/mason-lspconfig.nvim')
 
+    -- coc
+    use({
+      'neoclide/coc.nvim',
+      branch = 'release',
+    })
+
     --------------------------cmp----------------------------------
     -- 补全引擎
     use('hrsh7th/nvim-cmp')
