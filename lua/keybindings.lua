@@ -17,6 +17,65 @@ map('t', 'jk', '<C-\\><C-n>', opt)
 map('i', '<C-f>', '<Right>', opt)
 map('i', '<C-b>', '<Left>', opt)
 
+-- use which-key mapping
+local status, wk = pcall(require, 'which-key')
+if not status then
+  vim.notify('没有找到 which-key')
+  return
+end
+
+------------- coc shortcut keys--------------------
+local keyset = vim.keymap.set
+
+-- Autocomplete
+function _G.check_back_space()
+  local col = vim.fn.col('.') - 1
+  return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+
+-- Use <C-j> for trigger completion with characters ahead and navigate
+-- NOTE: There's always a completion item selected by default, you may want to enable
+-- no select by setting `"suggest.noselect": true` in your configuration file
+-- NOTE: Use command ':verbose imap <C-j>' to make sure <C-j> is not mapped by
+-- other plugins before putting this into your config
+local opts1 = { silent = true, noremap = true, expr = true, replace_keycodes = false }
+keyset('i', '<C-j>', 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts1)
+keyset('i', '<C-k>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts1)
+
+-- Make <CR> to accept selected completion item or notify coc.nvim to format
+-- <C-g>u breaks current undo, please make your own choice
+-- keyset('i', '<cr>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts1)
+-- Because <cr> conflict nvim-autopair plugin autopairs_cr(),
+-- this shortcut key setting is plugins-config/nvim-autopairs.lua
+
+-- Use `[g` and `]g` to navigate diagnostics
+-- -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+keyset('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })
+keyset('n', ']g', '<Plug>(coc-diagnostic-next)', { silent = true })
+--
+-- -- GoTo code navigation
+keyset('n', 'gd', '<Plug>(coc-definition)', { silent = true })
+keyset('n', 'gy', '<Plug>(coc-type-definition)', { silent = true })
+keyset('n', 'gi', '<Plug>(coc-implementation)', { silent = true })
+keyset('n', 'gr', '<Plug>(coc-references)', { silent = true })
+
+-- Use K to show documentation in preview window
+function _G.show_docs()
+  local cw = vim.fn.expand('<cword>')
+  if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
+    vim.api.nvim_command('h ' .. cw)
+  elseif vim.api.nvim_eval('coc#rpc#ready()') then
+    vim.fn.CocActionAsync('doHover')
+  else
+    vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
+  end
+end
+wk.register({
+  ['<leader>h'] = { '<cmd>lua _G.show_docs()<CR>', 'Show doc' },
+}, { silent = true })
+
+-------------- end coc shortcut keys ---------------
+
 -- nvim-tree 插件快捷键
 local pluginKeys = {}
 -- nvim-tree 列表快捷键
@@ -78,10 +137,10 @@ pluginKeys.cmp = function(cmp)
     -- 下一个
     ['<C-j>'] = cmp.mapping.select_next_item(),
     -- 确认
-    ['<CR>'] = cmp.mapping.confirm({
-      select = false,
-      behavior = cmp.ConfirmBehavior.Replace,
-    }),
+    -- ['<CR>'] = cmp.mapping.confirm({
+    --   select = false,
+    --   behavior = cmp.ConfirmBehavior.Replace,
+    -- }),
     -- 如果窗口内容太多，可以滚动
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
@@ -99,13 +158,6 @@ pluginKeys.cmp = function(cmp)
       end
     end, { 'i', 's' }),
   }
-end
-
--- use which-key mapping
-local status, wk = pcall(require, 'which-key')
-if not status then
-  vim.notify('没有找到 which-key')
-  return
 end
 
 -- toggleterm

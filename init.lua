@@ -8,13 +8,16 @@ require('plugins')
 require('colorscheme')
 
 -- lsp
-require('lsp.setup')
-
--- cmp
-require('cmp.setup')
-
--- formatting and diagnostic
+-- require('lsp.setup')
+--
+-- -- cmp
+-- require('cmp.setup')
+--
+-- -- formatting and diagnostic
 require('format.setup')
 
+-- coc lsp cmp
+require('coc.setup')
+
 -- dap
-require('dap.setup')
+-- require('dap.setup')
