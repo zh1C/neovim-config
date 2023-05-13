@@ -1,2 +1,2 @@
 require('cmp.cmp')
-require('cmp.ui')
+-- require('cmp.ui')

@@ -1,35 +1,35 @@
 local cmp = require('cmp')
 
-cmp.setup({
-  -- 指定 snippet 引擎
-  snippet = {
-    expand = function(args)
-      -- For `vsnip` users.
-      vim.fn['vsnip#anonymous'](args.body)
-    end,
-  },
-  -- 补全源
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
-    -- For vsnip users.
-    { name = 'vsnip' },
-
-    -- For luasnip users.
-    -- { name = 'luasnip' },
-
-    --For ultisnips users.
-    -- { name = 'ultisnips' },
-
-    -- -- For snippy users.
-    -- { name = 'snippy' },
-  }, { { name = 'buffer' }, { name = 'path' } }),
-
-  -- 快捷键设置
-  mapping = require('keybindings').cmp(cmp),
-  -- 使用lspkind-nvim显示类型图标 (新增)
-  formatting = require('cmp.ui').formatting,
-})
+-- cmp.setup({
+--   -- 指定 snippet 引擎
+--   snippet = {
+--     expand = function(args)
+--       -- For `vsnip` users.
+--       vim.fn['vsnip#anonymous'](args.body)
+--     end,
+--   },
+--   -- 补全源
+--   sources = cmp.config.sources({
+--     { name = 'nvim_lsp' },
+--     { name = 'nvim_lsp_signature_help' },
+--     -- For vsnip users.
+--     { name = 'vsnip' },
+--
+--     -- For luasnip users.
+--     -- { name = 'luasnip' },
+--
+--     --For ultisnips users.
+--     -- { name = 'ultisnips' },
+--
+--     -- -- For snippy users.
+--     -- { name = 'snippy' },
+--   }, { { name = 'buffer' }, { name = 'path' } }),
+--
+--   -- 快捷键设置
+--   mapping = require('keybindings').cmp(cmp),
+--   -- 使用lspkind-nvim显示类型图标 (新增)
+--   formatting = require('cmp.ui').formatting,
+-- })
 
 -- / 查找模式使用 buffer 源
 cmp.setup.cmdline('/', {

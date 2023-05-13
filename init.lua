@@ -11,8 +11,8 @@ require('colorscheme')
 -- require('lsp.setup')
 --
 -- -- cmp
--- require('cmp.setup')
---
+require('cmp.setup')
+
 -- -- formatting and diagnostic
 require('format.setup')
 
@@ -20,4 +20,4 @@ require('format.setup')
 require('coc.setup')
 
 -- dap
--- require('dap.setup')
+require('dap.setup')

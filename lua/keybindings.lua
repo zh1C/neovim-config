@@ -39,7 +39,8 @@ end
 -- NOTE: Use command ':verbose imap <C-j>' to make sure <C-j> is not mapped by
 -- other plugins before putting this into your config
 local opts1 = { silent = true, noremap = true, expr = true, replace_keycodes = false }
-keyset('i', '<C-j>', 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts1)
+-- keyset('i', '<TAB>', 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts1)
+keyset('i', '<C-j>', 'coc#pum#visible() ? coc#pum#next(1) : coc#refresh()', opts1)
 keyset('i', '<C-k>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts1)
 
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
@@ -59,7 +60,7 @@ keyset('n', 'gy', '<Plug>(coc-type-definition)', { silent = true })
 keyset('n', 'gi', '<Plug>(coc-implementation)', { silent = true })
 keyset('n', 'gr', '<Plug>(coc-references)', { silent = true })
 
--- Use K to show documentation in preview window
+-- Use <leader>h to show documentation in preview window
 function _G.show_docs()
   local cw = vim.fn.expand('<cword>')
   if vim.fn.index({ 'vim', 'help' }, vim.bo.filetype) >= 0 then
@@ -70,9 +71,16 @@ function _G.show_docs()
     vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
   end
 end
+
 wk.register({
   ['<leader>h'] = { '<cmd>lua _G.show_docs()<CR>', 'Show doc' },
 }, { silent = true })
+
+-- Apply codeAction to the selected region
+-- Example: `<leader>aap` for current paragraph
+local opts2 = { silent = true, nowait = true }
+keyset('x', '<leader>a', '<Plug>(coc-codeaction-selected)', opts2)
+keyset('n', '<leader>a', '<Plug>(coc-codeaction-selected)', opts2)
 
 -------------- end coc shortcut keys ---------------
 
