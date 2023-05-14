@@ -2,4 +2,5 @@
 vim.opt.backup = false
 vim.opt.writebackup = false
 
-_G.coc_global_extensions = { 'coc-json', 'coc-lua', 'coc-go' }
+-- auto install coc extensions
+vim.g.coc_global_extensions = { 'coc-json', 'coc-lua', 'coc-go' }
