@@ -30,10 +30,10 @@ null_ls.setup({
     formatting.isort,
 
     -- json, js, ts formatting
-    formatting.deno_fmt,
+    -- formatting.deno_fmt,
 
     -- java formatting
-    formatting.google_java_format,
+    -- formatting.google_java_format,
 
     -- diagnostics
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
