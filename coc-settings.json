@@ -43,6 +43,9 @@
 	"diagnostic.virtualText": true,
 	"coc.preferences.formatOnSave": true,
 	"Lua.format.enable": false,
+	"Lua.diagnostics.globals": [
+		"vim"
+	],
 	"java.format.enabled": true,
 	"java.saveActions.organizeImports": true,
 	"go.goplsOptions": {
