@@ -60,6 +60,18 @@ keyset('n', 'gy', '<Plug>(coc-type-definition)', { silent = true })
 keyset('n', 'gi', '<Plug>(coc-implementation)', { silent = true })
 keyset('n', 'gr', '<Plug>(coc-references)', { silent = true })
 
+------ coc multiple cursor
+
+wk.register({
+  m = {
+    name = 'multiple corsur',
+    c = { '<Plug>(coc-cursors-position)', 'add current character range to cursors', mode = 'n', opt },
+    w = { '<plug>(coc-cursors-word)', 'add current word range to cursors', mode = 'n', opt },
+    r = { '<plug>(coc-cursors-range)', 'add current visual selected range to cursors', mode = 'v', opt },
+    o = { '<plug>(coc-cursors-operator)', 'use operator for add range to cursors', mode = 'n', opt },
+  },
+}, { prefix = '<leader>' })
+
 -- Use <leader>h to show documentation in preview window
 function _G.show_docs()
   local cw = vim.fn.expand('<cword>')

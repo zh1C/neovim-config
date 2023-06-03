@@ -2,6 +2,7 @@
 	"suggest.noselect": true,
 	"suggest.enablePreselect": false,
 	"coc.preferences.extensionUpdateCheck": "daily",
+	"cursors.cancelKey": "<C-c>",
 	"suggest.completionItemKindLabels": {
 		"class": "",
 		"color": "",
@@ -41,5 +42,10 @@
 	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
 	"diagnostic.virtualText": true,
 	"coc.preferences.formatOnSave": true,
-	"Lua.format.enable": false
+	"Lua.format.enable": false,
+	"java.format.enabled": true,
+	"java.saveActions.organizeImports": true,
+	"go.goplsOptions": {
+		"staticcheck": true
+	}
 }

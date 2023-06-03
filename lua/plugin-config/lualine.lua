@@ -20,7 +20,9 @@ lualine.setup({
         colored = true,
         symbols = { added = ' ', modified = ' ', removed = ' ' },
       },
-      'diagnostics',
+      -- 'diagnostics',
+      -- use coc status included diagnostics
+      '%{coc#status()}',
     },
     lualine_c = {
       {
