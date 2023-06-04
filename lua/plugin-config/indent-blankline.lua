@@ -6,4 +6,6 @@ end
 
 indent_blankline.setup({
   show_end_of_line = true,
+  -- exclude plugins is not enabled
+  filetype_exclude = { 'dashboard', 'nvim-tree' },
 })
