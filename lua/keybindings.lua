@@ -85,14 +85,13 @@ function _G.show_docs()
 end
 
 wk.register({
-  ['<leader>h'] = { '<cmd>lua _G.show_docs()<CR>', 'Show doc' },
+  ['<leader>h'] = { '<cmd>lua _G.show_docs()<CR>', 'Show doc', mode = 'n' },
 }, { silent = true })
 
--- Apply codeAction to the selected region
--- Example: `<leader>aap` for current paragraph
-local opts2 = { silent = true, nowait = true }
-keyset('x', '<leader>a', '<Plug>(coc-codeaction-selected)', opts2)
-keyset('n', '<leader>a', '<Plug>(coc-codeaction-selected)', opts2)
+-- Symbol renaming
+wk.register({
+  ['<leader>r'] = { '<Plug>(coc-rename)', 'Symbol rename', mode = 'n' },
+}, { silent = true })
 
 -------------- end coc shortcut keys ---------------
 
