@@ -39,4 +39,9 @@ bufferline.setup({
       return s
     end,
   },
+  highlights = {
+    fill = {
+      bg = 'none',
+    },
+  },
 })
