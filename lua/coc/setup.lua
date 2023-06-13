@@ -14,3 +14,6 @@ vim.g.coc_global_extensions = {
   'coc-yaml',
 }
 
+-- status info
+vim.g.coc_status_error_sign = ' '
+vim.g.coc_status_warning_sign = ' '
