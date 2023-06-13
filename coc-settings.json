@@ -31,9 +31,9 @@
 		"variable": "󰀫"
 	},
 	"diagnostic.signPriority": 1,
-	"diagnostic.errorSign": "",
+	"diagnostic.errorSign": "",
 	"diagnostic.warningSign": "",
-	"diagnostic.infoSign": "",
+	"diagnostic.infoSign": "",
 	"diagnostic.hintSign": "",
 	"diagnostic.displayByAle": false,
 	"diagnostic.autoRefresh": true,
