@@ -20,8 +20,8 @@ null_ls.setup({
 
     -- golang fotmatting
     -- go install ......
-    formatting.gofmt,
-    formatting.goimports,
+    -- formatting.gofmt,
+    -- formatting.goimports,
 
     -- python formatting
     -- pip install autoflake isort yapf

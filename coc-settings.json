@@ -48,7 +48,4 @@
 	],
 	"java.format.enabled": true,
 	"java.saveActions.organizeImports": true,
-	"go.goplsOptions": {
-		"staticcheck": true
-	}
 }
