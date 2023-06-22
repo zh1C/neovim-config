@@ -48,6 +48,18 @@ packer.startup({
       end,
     })
 
+    -- noice
+    use({
+      'folke/noice.nvim',
+      requires = {
+        'MunifTanjim/nui.nvim',
+        'rcarriga/nvim-notify',
+      },
+      config = function()
+        require('plugin-config.noice')
+      end,
+    })
+
     -- indent-blankline
     use({
       'lukas-reineke/indent-blankline.nvim',
@@ -168,7 +180,7 @@ packer.startup({
       'phaazon/hop.nvim',
       branch = 'v2',
       config = function()
-        require('plugin-config.hop')
+        require('plugin-config.hopconfig')
       end,
     })
 
