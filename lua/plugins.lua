@@ -180,7 +180,7 @@ packer.startup({
       'phaazon/hop.nvim',
       branch = 'v2',
       config = function()
-        require('plugin-config.hopconfig')
+        require('plugin-config.hop')
       end,
     })
 

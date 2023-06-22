@@ -297,6 +297,7 @@ wk.register({
     name = 'search',
     s = { ':Telescope current_buffer_fuzzy_find<CR>', 'search current buffer', mode = 'n', opt },
     e = { ':Telescope diagnostics<CR>', 'search diagnostics', mode = 'n', opt },
+    d = { ':CocDiagnostics<CR>', 'show diagnostics in window', mode = 'n', opt },
   },
 }, { prefix = '<leader>' })
 
