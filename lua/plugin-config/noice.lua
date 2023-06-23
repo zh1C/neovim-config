@@ -21,4 +21,20 @@ noice.setup({
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false, -- add a border to hover docs and signature help
   },
+  cmdline = {
+    enabled = true, -- enables the Noice cmdline UI
+    view = 'cmdline_popup', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+  },
+  views = {
+    cmdline_popup = {
+      position = {
+        row = 15,
+        col = '50%',
+      },
+      size = {
+        width = 60,
+        height = 'auto',
+      },
+    },
+  },
 })
