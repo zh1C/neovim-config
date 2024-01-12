@@ -120,13 +120,15 @@ nvim_tree.setup({
   filters = {
     dotfiles = true,
   },
+  renderer = {
+    -- 隐藏根目录
+	root_folder_label = false
+  },
   view = {
     -- 宽度
     width = 30,
     -- 也可以 'right'
     side = 'left',
-    -- 隐藏根目录
-    hide_root_folder = false,
     -- 自定义列表中快捷键
     -- mappings = {
     --   custom_only = false,

@@ -1,11 +1,14 @@
-local status, indent_blankline = pcall(require, 'indent_blankline')
+local status, indent_blankline = pcall(require, 'ibl')
 if not status then
   vim.notify('没有找到 indent_blankline')
   return
 end
 
-indent_blankline.setup({
-  show_end_of_line = true,
-  -- exclude plugins is not enabled
-  filetype_exclude = { 'dashboard', 'nvim-tree' },
+indent_blankline.setup({})
+
+-- exclude plugins is not enabled
+indent_blankline.overwrite({
+	exclude = {
+		filetypes = { 'dashboard', 'nvim-tree'}
+	}
 })
