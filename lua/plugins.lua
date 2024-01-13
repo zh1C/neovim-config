@@ -176,7 +176,7 @@ lazy.setup({
     'phaazon/hop.nvim',
     branch = 'v2',
     config = function()
-      require('plugin-config.hop')
+      require('plugin-config.hop-config')
     end,
   },
 
@@ -219,8 +219,11 @@ lazy.setup({
   -- ui
   { 'onsails/lspkind-nvim' },
   {
-    'glepnir/lspsaga.nvim',
-    branch = 'main',
+    'nvimdev/lspsaga.nvim',
+	dependencies = {
+        'nvim-treesitter/nvim-treesitter',
+        'nvim-tree/nvim-web-devicons',
+    },
     config = function()
       require('plugin-config.lspsaga')
     end,

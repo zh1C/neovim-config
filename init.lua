@@ -1,9 +1,11 @@
 -- 基础设置
 require('basic')
--- 快捷键绑定设置
-require('keybindings')
+-- 基础快捷键设置
+require('basic-keybindings')
 -- Packer 插件管理
 require('plugins')
+-- which-key快捷键设置
+require('keybindings')
 -- 主题设置
 require('colorscheme')
 

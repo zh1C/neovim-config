@@ -1,21 +1,5 @@
--- set leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-local map = vim.api.nvim_set_keymap
 -- 复用opt参数
 local opt = { noremap = true, silent = true }
-
--- 退出insert mode, visual mode, command line到normal mode
-map('i', 'jk', '<ESC>', opt)
-map('v', 'jk', '<ESC>', opt)
-map('c', 'jk', '<ESC>', opt)
--- 退出terminal mode 到normal mode
-map('t', 'jk', '<C-\\><C-n>', opt)
-
--- 插入模式左右移动的快捷键
-map('i', '<C-f>', '<Right>', opt)
-map('i', '<C-b>', '<Left>', opt)
 
 -- use which-key mapping
 local status, wk = pcall(require, 'which-key')
@@ -180,7 +164,54 @@ pluginKeys.cmp = function(cmp)
 end
 
 -- toggleterm
-local termList = require('plugin-config.toggleterm')
+local Terminal = require('toggleterm.terminal').Terminal
+
+local lazygit = Terminal:new({
+  cmd = 'lazygit',
+  dir = 'git_dir',
+  direction = 'float',
+  float_opts = {
+    border = 'double',
+  },
+})
+
+-- custom float terminal
+local ta = Terminal:new({
+  direction = 'float',
+  close_on_exit = true,
+  float_opts = {
+    border = 'double',
+  },
+})
+
+-- custom horizontal terminal
+local th = Terminal:new({
+  direction = 'horizontal',
+  close_on_exit = true,
+})
+
+local termList = {}
+
+termList.toggleA = function()
+  if ta:is_open() then
+    ta:close()
+    return
+  end
+  ta:open()
+end
+
+termList.toggleH = function()
+  if th:is_open() then
+    th:close()
+    return
+  end
+  th:open()
+end
+
+termList.toggleG = function()
+  lazygit:toggle()
+end
+
 wk.register({
   t = {
     name = 'Terminal',
