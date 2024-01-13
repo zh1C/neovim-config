@@ -322,11 +322,7 @@ wk.register({
     m = { ':Mason<CR>', 'mason lsp', mode = 'n', opt },
     n = { ':NullLsInfo<CR>', 'null-ls info', mode = 'n', opt },
     l = { ':LspInfo<CR>', 'language server info', mode = 'n', opt },
-    s = { ':PackerSync<CR>', 'update and compile plugins', mode = 'n', opt },
-    u = { ':PackerUpdate<CR>', 'update and install plugins', mode = 'n', opt },
-    c = { ':PackerCompile<CR>', 'compile plugins configuration', mode = 'n', opt },
-    w = { ':PackerStatus<CR>', 'show list of installed plugins', mode = 'n', opt },
-    r = { ':PackerClean<CR>', 'Remove disabled or unused plugins', mode = 'n', opt },
+    u = { ':Lazy<CR>', 'Open Lazy', mode = 'n', opt },
   },
 }, { prefix = '<leader>' })
 

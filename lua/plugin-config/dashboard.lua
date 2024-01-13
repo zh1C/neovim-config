@@ -14,7 +14,7 @@ dashboard.setup({
     },
     packages = { enable = true },
     shortcut = {
-      { desc = '󰊳 Update Packages', group = '@property', action = 'PackerSync', key = 'u' },
+      { desc = '󰊳 Update Packages', group = '@property', action = 'Lazy update', key = 'u' },
       {
         icon = ' ',
         icon_hl = '@variable',
@@ -30,10 +30,10 @@ dashboard.setup({
         key = 'b',
       },
       {
-        desc = ' List Packages',
+        desc = ' Open Lazy Home',
         group = 'Number',
-        action = 'PackerStatus',
-        key = 'l',
+        action = 'Lazy',
+        key = 'o',
       },
     },
     footer = {
