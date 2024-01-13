@@ -201,6 +201,11 @@ lazy.setup({
     branch = 'release',
   },
 
+  -- vim-go
+  {
+	  'fatih/vim-go',
+  },
+
   --------------------------cmp----------------------------------
   -- 补全引擎
   { 'hrsh7th/nvim-cmp' },
