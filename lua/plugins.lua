@@ -203,7 +203,7 @@ lazy.setup({
 
   -- vim-go
   {
-	  'fatih/vim-go',
+    'fatih/vim-go',
   },
 
   --------------------------cmp----------------------------------
@@ -225,9 +225,9 @@ lazy.setup({
   { 'onsails/lspkind-nvim' },
   {
     'nvimdev/lspsaga.nvim',
-	dependencies = {
-        'nvim-treesitter/nvim-treesitter',
-        'nvim-tree/nvim-web-devicons',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
     },
     config = function()
       require('plugin-config.lspsaga')
