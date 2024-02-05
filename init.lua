@@ -1,5 +1,8 @@
 -- 基础设置
 require('basic')
+-- 自定义设置
+require('visual-star')
+
 -- 基础快捷键设置
 require('basic-keybindings')
 -- Packer 插件管理
