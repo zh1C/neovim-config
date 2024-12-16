@@ -1,5 +1,5 @@
 {
-	"suggest.noselect": true,
+	"suggest.noselect": false,
 	"suggest.enablePreselect": false,
 	"coc.preferences.extensionUpdateCheck": "daily",
 	"cursors.cancelKey": "<C-c>",
