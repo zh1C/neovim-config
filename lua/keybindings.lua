@@ -44,7 +44,7 @@ keyset('n', 'gr', '<Plug>(coc-references)', { silent = true })
 ------ coc multiple cursor
 
 wk.add({
-  { '<leader>m', group = 'multiple corsur' },
+  { '<leader>m', group = 'multiple corsur', icon = { icon = '󰇀 ', color = 'cyan' } },
   { '<leader>mc', '<Plug>(coc-cursors-position)', desc = 'add current character range to cursors' },
   { '<leader>mo', '<plug>(coc-cursors-operator)', desc = 'use operator for add range to cursors' },
   { '<leader>mw', '<plug>(coc-cursors-word)', desc = 'add current word range to cursors' },
@@ -64,12 +64,12 @@ function _G.show_docs()
 end
 
 wk.add({
-  { '<leader>h', '<cmd>lua _G.show_docs()<CR>', desc = 'Show doc' },
+  { '<leader>h', '<cmd>lua _G.show_docs()<CR>', desc = 'Show doc', icon = { icon = '󰧮 ', color = 'purple' } },
 })
 
 -- Symbol renaming
 wk.add({
-  { '<leader>r', '<Plug>(coc-rename)', desc = 'Symbol rename' },
+  { '<leader>r', '<Plug>(coc-rename)', desc = 'Symbol rename', icon = { icon = ' ', color = 'blue' } },
 })
 
 -------------- end coc shortcut keys ---------------
@@ -308,41 +308,41 @@ wk.add({
 
 -- project shortcuts
 wk.add({
-  { '<leader>p', group = 'project' },
-  { '<leader>pp', ':Telescope projects<CR>', desc = 'open project' },
+  { '<leader>p', group = 'project', icon = { icon = ' ', color = 'azure' } },
+  { '<leader>pp', ':Telescope projects<CR>', desc = 'open project', icon = { icon = ' ', color = 'azure' } },
 })
 
 -- zen-mode
 wk.add({
-  { '<leader>z', ':ZenMode<CR>', desc = 'open/close Zen-Mode' },
+  { '<leader>z', ':ZenMode<CR>', desc = 'open/close Zen-Mode', icon = { icon = ' ', color = 'orange' } },
 })
 
 -- install shortcuts
 wk.add({
-  { '<leader>i', group = 'install/info' },
-  { '<leader>il', ':LspInfo<CR>', desc = 'language server info' },
-  { '<leader>im', ':Mason<CR>', desc = 'mason lsp' },
-  { '<leader>in', ':NullLsInfo<CR>', desc = 'null-ls info' },
-  { '<leader>ip', ':TSInstallInfo<CR>', desc = 'language parser info' },
-  { '<leader>iu', ':Lazy<CR>', desc = 'Open Lazy' },
+  { '<leader>i', group = 'install/info', icon = { icon = ' ', color = 'red' } },
+  { '<leader>il', ':LspInfo<CR>', desc = 'language server info', icon = { icon = ' ', color = 'red' } },
+  { '<leader>im', ':Mason<CR>', desc = 'mason lsp', icon = { icon = ' ', color = 'red' } },
+  { '<leader>in', ':NullLsInfo<CR>', desc = 'null-ls info', icon = { icon = '󰊴 ', color = 'red' } },
+  { '<leader>ip', ':TSInstallInfo<CR>', desc = 'language parser info', icon = { icon = '󰤄 ', color = 'red' } },
+  { '<leader>iu', ':Lazy<CR>', desc = 'Open Lazy', icon = { icon = '󰒲 ', color = 'red' } },
 })
 
 -- comment shortcuts
 -- setting in file ./plugin-config/comment.lua
 wk.add({
-  { '<leader>c', group = 'comments' },
+  { '<leader>c', group = 'comments', icon = { icon = '󰅺 ', color = 'purple' } },
 })
 
 -- surround shortcuts
 -- setting in file ./plugin-config/surround.lua
 wk.add({
-  { '<leader>o', group = 'surround' },
+  { '<leader>o', group = 'surround', icon = { icon = '󰗅 ', color = 'blue' } },
 })
 
 -- jump hop shortcuts
 local hop = require('hop')
 wk.add({
-  { '<leader>j', group = 'jump' },
+  { '<leader>j', group = 'jump', icon = { icon = '󱍢 ', color = 'yellow' } },
   {
     '<leader>jc',
     function()

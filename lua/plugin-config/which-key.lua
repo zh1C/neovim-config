@@ -7,6 +7,7 @@ end
 -- 配置 which-key
 -- 可以配置请参考 https://github.com/folke/which-key.nvim
 which_key.setup({
+  preset = 'modern',
   -- leave it empty to use the default settings.
   replace = {
     key = {
