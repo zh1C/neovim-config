@@ -8,8 +8,9 @@ end
 -- 可以配置请参考 https://github.com/folke/which-key.nvim
 which_key.setup({
   -- leave it empty to use the default settings.
-  key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    ['<leader>'] = 'SPC',
+  replace = {
+    key = {
+      { '<leader>', 'SPC' },
+    },
   },
 })

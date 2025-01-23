@@ -78,6 +78,9 @@ lazy.setup({
   -- which-key
   {
     'folke/which-key.nvim',
+    dependencies = {
+      { 'echasnovski/mini.icons', version = false },
+    },
     config = function()
       require('plugin-config.which-key')
     end,
@@ -242,8 +245,11 @@ lazy.setup({
   },
 
   -------------------------dap------------------------------------
-  { 'mfussenegger/nvim-dap' },
-  { 'rcarriga/nvim-dap-ui' },
+  {
+    'rcarriga/nvim-dap-ui',
+    dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
+  },
+
   { 'theHamsta/nvim-dap-virtual-text' },
   { 'jbyuki/one-small-step-for-vimkind' },
 

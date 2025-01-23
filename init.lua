@@ -25,4 +25,4 @@ require('format.setup')
 require('coc.setup')
 
 -- dap
--- require('dap.setup')
+require('dap.setup')

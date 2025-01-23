@@ -1,6 +1,3 @@
--- 复用opt参数
-local opt = { noremap = true, silent = true }
-
 -- use which-key mapping
 local status, wk = pcall(require, 'which-key')
 if not status then
@@ -46,15 +43,13 @@ keyset('n', 'gr', '<Plug>(coc-references)', { silent = true })
 
 ------ coc multiple cursor
 
-wk.register({
-  m = {
-    name = 'multiple corsur',
-    c = { '<Plug>(coc-cursors-position)', 'add current character range to cursors', mode = 'n', opt },
-    w = { '<plug>(coc-cursors-word)', 'add current word range to cursors', mode = 'n', opt },
-    r = { '<plug>(coc-cursors-range)', 'add current visual selected range to cursors', mode = 'v', opt },
-    o = { '<plug>(coc-cursors-operator)', 'use operator for add range to cursors', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>m', group = 'multiple corsur' },
+  { '<leader>mc', '<Plug>(coc-cursors-position)', desc = 'add current character range to cursors' },
+  { '<leader>mo', '<plug>(coc-cursors-operator)', desc = 'use operator for add range to cursors' },
+  { '<leader>mw', '<plug>(coc-cursors-word)', desc = 'add current word range to cursors' },
+  { '<leader>mr', '<plug>(coc-cursors-range)', desc = 'add current visual selected range to cursors', mode = 'v' },
+})
 
 -- Use <leader>h to show documentation in preview window
 function _G.show_docs()
@@ -68,14 +63,14 @@ function _G.show_docs()
   end
 end
 
-wk.register({
-  ['<leader>h'] = { '<cmd>lua _G.show_docs()<CR>', 'Show doc', mode = 'n' },
-}, { silent = true })
+wk.add({
+  { '<leader>h', '<cmd>lua _G.show_docs()<CR>', desc = 'Show doc' },
+})
 
 -- Symbol renaming
-wk.register({
-  ['<leader>r'] = { '<Plug>(coc-rename)', 'Symbol rename', mode = 'n' },
-}, { silent = true })
+wk.add({
+  { '<leader>r', '<Plug>(coc-rename)', desc = 'Symbol rename' },
+})
 
 -------------- end coc shortcut keys ---------------
 
@@ -212,311 +207,260 @@ termList.toggleG = function()
   lazygit:toggle()
 end
 
-wk.register({
-  t = {
-    name = 'Terminal',
-    f = {
-      function()
-        termList.toggleA()
-      end,
-      'open/close float Terminal',
-      mode = 'n',
-      opt,
-    },
-    h = {
-      function()
-        termList.toggleH()
-      end,
-      'open/close horizontal Terminal',
-      mode = 'n',
-      opt,
-    },
+wk.add({
+  { '<leader>t', group = 'Terminal' },
+  {
+    '<leader>tf',
+    function()
+      termList.toggleA()
+    end,
+    desc = 'open/close float Terminal',
   },
-}, { prefix = '<leader>' })
+  {
+    '<leader>th',
+    function()
+      termList.toggleH()
+    end,
+    desc = 'open/close horizontal Terminal',
+  },
+})
 
 -- git shortcuts
-wk.register({
-  g = {
-    name = 'git',
-    g = {
-      function()
-        termList.toggleG()
-      end,
-      'open lazygit',
-      mode = 'n',
-      opt,
-    },
+wk.add({
+  { '<leader>g', group = 'git' },
+  {
+    '<leader>gg',
+    function()
+      termList.toggleG()
+    end,
+    desc = 'open lazygit',
   },
-}, { prefix = '<leader>' })
+})
+
 -- gitsigns shortcuts
-pluginKeys.gitsigns_on_attach = function(bufnr)
+pluginKeys.gitsigns_on_attach = function()
   local gs = package.loaded.gitsigns
 
-  local opts = { buffer = bufnr, mode = 'n', opt }
-
-  wk.register({
-    g = {
-      name = 'git',
-      v = { gs.preview_hunk, 'preview hunk', opts },
-      n = { gs.next_hunk, 'next hunk', opts },
-      p = { gs.prev_hunk, 'prev hunk', opts },
-      r = { ':Gitsigns reset_hunk<CR>', 'reset hunk', opts },
-    },
-  }, { prefix = '<leader>' })
+  wk.add({
+    { '<leader>g', group = 'git' },
+    { '<leader>gn', gs.next_hunk, desc = 'next hunk' },
+    { '<leader>gp', gs.prev_hunk, desc = 'prev hunk' },
+    { '<leader>gr', ':Gitsigns reset_hunk<CR>', desc = 'reset hunk' },
+    { '<leader>gv', gs.preview_hunk, desc = 'preview hunk' },
+  })
 end
 
 -- file shortcuts
-wk.register({
-  f = {
-    name = 'Files',
-    s = { ':w<CR>', 'Save', mode = 'n', opt },
-    -- nvim-tree plugin
-    t = { ':NvimTreeToggle<CR>', 'open/hiden file tree', mode = 'n', opt },
-    f = { ':Telescope find_files<CR>', 'find file', mode = 'n', opt },
-    o = { ':Telescope oldfiles<CR>', 'open recent file', mode = 'n', opt },
-    k = { ':e ~/.config/nvim/lua/keybindings.lua<CR>', 'edit keybinding', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>f', group = 'Files' },
+  { '<leader>ff', ':Telescope find_files<CR>', desc = 'find file' },
+  { '<leader>fk', ':e ~/.config/nvim/lua/keybindings.lua<CR>', desc = 'edit keybinding' },
+  { '<leader>fo', ':Telescope oldfiles<CR>', desc = 'open recent file' },
+  { '<leader>fs', ':w<CR>', desc = 'Save' },
+  { '<leader>ft', ':NvimTreeToggle<CR>', desc = 'open/hiden file tree' },
+})
 
 -- quit shortcuts
-wk.register({
-  q = {
-    name = 'quit',
-    q = { ':q<CR>', 'quit neovim', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>q', group = 'quit' },
+  { '<leader>qq', ':q<CR>', desc = 'quit neovim' },
+})
 
 -- windows shortcuts
-wk.register({
-  w = {
-    name = 'windows',
-    v = { ':vsp<CR>', 'split window right', mode = 'n', opt },
-    s = { ':sp<CR>', 'split window below', mode = 'n', opt },
-    d = { '<C-w>c', 'delete currrent window', mode = 'n', opt },
-    o = { '<C-w>o', 'delete other windows', mode = 'n', opt },
-    l = { '<C-w>l', 'go to the right window', mode = 'n', opt },
-    h = { '<C-w>h', 'go to the left window', mode = 'n', opt },
-    j = { '<C-w>j', 'go to the down window', mode = 'n', opt },
-    k = { '<C-w>k', 'go to the up window', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>w', group = 'windows' },
+  { '<leader>wd', '<C-w>c', desc = 'delete currrent window' },
+  { '<leader>wh', '<C-w>h', desc = 'go to the left window' },
+  { '<leader>wj', '<C-w>j', desc = 'go to the down window' },
+  { '<leader>wk', '<C-w>k', desc = 'go to the up window' },
+  { '<leader>wl', '<C-w>l', desc = 'go to the right window' },
+  { '<leader>wo', '<C-w>o', desc = 'delete other windows' },
+  { '<leader>ws', ':sp<CR>', desc = 'split window below' },
+  { '<leader>wv', ':vsp<CR>', desc = 'split window right' },
+})
 
 -- buffer line shortcuts
-wk.register({
-  b = {
-    name = 'buffers',
-    c = { ':BufferLinePickClose<CR>', 'Choose buffer close', mode = 'n', opt },
-    p = { ':BufferLineCyclePrev<CR>', 'Previous buffer', mode = 'n', opt },
-    n = { ':BufferLineCycleNext<CR>', 'Next buffer', mode = 'n', opt },
-    d = { ':Bdelete!<CR>', 'Kill buffer', mode = 'n', opt },
-    b = { ':Telescope buffers<CR>', 'List buffers', mode = 'n', opt },
-    ['1'] = { ':BufferLineGoToBuffer 1<CR>', 'Go to buffer 1', mode = 'n', opt },
-    ['2'] = { ':BufferLineGoToBuffer 2<CR>', 'Go to buffer 2', mode = 'n', opt },
-    ['3'] = { ':BufferLineGoToBuffer 3<CR>', 'Go to buffer 3', mode = 'n', opt },
-    ['4'] = { ':BufferLineGoToBuffer 4<CR>', 'Go to buffer 4', mode = 'n', opt },
-    ['5'] = { ':BufferLineGoToBuffer 5<CR>', 'Go to buffer 5', mode = 'n', opt },
-    ['6'] = { ':BufferLineGoToBuffer 6<CR>', 'Go to buffer 6', mode = 'n', opt },
-    ['7'] = { ':BufferLineGoToBuffer 7<CR>', 'Go to buffer 7', mode = 'n', opt },
-    ['8'] = { ':BufferLineGoToBuffer 8<CR>', 'Go to buffer 8', mode = 'n', opt },
-    ['9'] = { ':BufferLineGoToBuffer 9<CR>', 'Go to buffer 9', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>b', group = 'buffers' },
+  { '<leader>b1', ':BufferLineGoToBuffer 1<CR>', desc = 'Go to buffer 1' },
+  { '<leader>b2', ':BufferLineGoToBuffer 2<CR>', desc = 'Go to buffer 2' },
+  { '<leader>b3', ':BufferLineGoToBuffer 3<CR>', desc = 'Go to buffer 3' },
+  { '<leader>b4', ':BufferLineGoToBuffer 4<CR>', desc = 'Go to buffer 4' },
+  { '<leader>b5', ':BufferLineGoToBuffer 5<CR>', desc = 'Go to buffer 5' },
+  { '<leader>b6', ':BufferLineGoToBuffer 6<CR>', desc = 'Go to buffer 6' },
+  { '<leader>b7', ':BufferLineGoToBuffer 7<CR>', desc = 'Go to buffer 7' },
+  { '<leader>b8', ':BufferLineGoToBuffer 8<CR>', desc = 'Go to buffer 8' },
+  { '<leader>b9', ':BufferLineGoToBuffer 9<CR>', desc = 'Go to buffer 9' },
+  { '<leader>bb', ':Telescope buffers<CR>', desc = 'List buffers' },
+  { '<leader>bc', ':BufferLinePickClose<CR>', desc = 'Choose buffer close' },
+  { '<leader>bd', ':Bdelete!<CR>', desc = 'Kill buffer' },
+  { '<leader>bn', ':BufferLineCycleNext<CR>', desc = 'Next buffer' },
+  { '<leader>bp', ':BufferLineCyclePrev<CR>', desc = 'Previous buffer' },
+})
 
 -- search shortcuts
-wk.register({
-  s = {
-    name = 'search',
-    s = { ':Telescope current_buffer_fuzzy_find<CR>', 'search current buffer', mode = 'n', opt },
-    e = { ':Telescope diagnostics<CR>', 'search diagnostics', mode = 'n', opt },
-    d = { ':CocDiagnostics<CR>', 'show diagnostics in window', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>s', group = 'search' },
+  { '<leader>sd', ':CocDiagnostics<CR>', desc = 'show diagnostics in window' },
+  { '<leader>se', ':Telescope diagnostics<CR>', desc = 'search diagnostics' },
+  { '<leader>ss', ':Telescope current_buffer_fuzzy_find<CR>', desc = 'search current buffer' },
+})
 
 -- project shortcuts
-wk.register({
-  p = {
-    name = 'project',
-    p = { ':Telescope projects<CR>', 'open project', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>p', group = 'project' },
+  { '<leader>pp', ':Telescope projects<CR>', desc = 'open project' },
+})
 
 -- zen-mode
-wk.register({
-  ['<leader>z'] = { ':ZenMode<CR>', 'open/close Zen-Mode', mode = 'n', opt },
+wk.add({
+  { '<leader>z', ':ZenMode<CR>', desc = 'open/close Zen-Mode' },
 })
 
 -- install shortcuts
-wk.register({
-  i = {
-    name = 'install/info',
-    p = { ':TSInstallInfo<CR>', 'language parser info', mode = 'n', opt },
-    m = { ':Mason<CR>', 'mason lsp', mode = 'n', opt },
-    n = { ':NullLsInfo<CR>', 'null-ls info', mode = 'n', opt },
-    l = { ':LspInfo<CR>', 'language server info', mode = 'n', opt },
-    u = { ':Lazy<CR>', 'Open Lazy', mode = 'n', opt },
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>i', group = 'install/info' },
+  { '<leader>il', ':LspInfo<CR>', desc = 'language server info' },
+  { '<leader>im', ':Mason<CR>', desc = 'mason lsp' },
+  { '<leader>in', ':NullLsInfo<CR>', desc = 'null-ls info' },
+  { '<leader>ip', ':TSInstallInfo<CR>', desc = 'language parser info' },
+  { '<leader>iu', ':Lazy<CR>', desc = 'Open Lazy' },
+})
 
 -- comment shortcuts
 -- setting in file ./plugin-config/comment.lua
-wk.register({
-  c = {
-    name = 'comments',
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>c', group = 'comments' },
+})
 
 -- surround shortcuts
 -- setting in file ./plugin-config/surround.lua
-wk.register({
-  o = {
-    name = 'surround',
-  },
-}, { prefix = '<leader>' })
+wk.add({
+  { '<leader>o', group = 'surround' },
+})
 
 -- jump hop shortcuts
 local hop = require('hop')
-wk.register({
-  j = {
-    name = 'jump',
-    l = {
-      function()
-        hop.hint_lines()
-      end,
-      'line',
-      mode = 'n',
-      opt,
-    },
-    c = {
-      function()
-        hop.hint_char2()
-      end,
-      'char2',
-      mode = 'n',
-      opt,
-    },
-    j = {
-      function()
-        hop.hint_char1({ current_line_only = true })
-      end,
-      'char current line',
-      mode = 'n',
-      opt,
-    },
-    p = {
-      function()
-        hop.hint_patterns()
-      end,
-      'patterns',
-      mode = 'n',
-      opt,
-    },
-    w = {
-      function()
-        hop.hint_words()
-      end,
-      'words',
-      mode = 'n',
-      opt,
-    },
+wk.add({
+  { '<leader>j', group = 'jump' },
+  {
+    '<leader>jc',
+    function()
+      hop.hint_char2()
+    end,
+    desc = 'char2',
   },
-}, { prefix = '<leader>' })
+  {
+    '<leader>jj',
+    function()
+      hop.hint_char1({ current_line_only = true })
+    end,
+    desc = 'char current line',
+  },
+  {
+    '<leader>jl',
+    function()
+      hop.hint_lines()
+    end,
+    desc = 'line',
+  },
+  {
+    '<leader>jp',
+    function()
+      hop.hint_patterns()
+    end,
+    desc = 'patterns',
+  },
+  {
+    '<leader>jw',
+    function()
+      hop.hint_words()
+    end,
+    desc = 'words',
+  },
+})
 
 -- dap shortcuts
 pluginKeys.mapDAP = function()
   local dap = require('dap')
   local osv = require('osv')
-  wk.register({
-    d = {
-      name = 'debug',
-      l = {
-        function()
-          osv.launch({ port = 8086 })
-        end,
-        'Start lua debug',
-        mode = 'n',
-        opt,
-      },
-      s = {
-        function()
-          dap.continue()
-        end,
-        'Start',
-        mode = 'n',
-        opt,
-      },
-      q = {
-        function()
-          dap.close()
-          dap.terminate()
-          dap.clear_breakpoints()
-          require('dap.repl').close()
-          require('dapui').close({})
-        end,
-        'Quit',
-        mode = 'n',
-        opt,
-      },
-      r = {
-        function()
-          dap.repl.toggle()
-        end,
-        'Toggle repl',
-        mode = 'n',
-        opt,
-      },
-      -- continue
-      c = {
-        function()
-          dap.continue()
-        end,
-        'Continue run',
-        mode = 'n',
-        opt,
-      },
-      -- breakpoints
-      b = {
-        function()
-          dap.toggle_breakpoint()
-        end,
-        'Toggle breakpoint',
-        mode = 'n',
-        opt,
-      },
-      B = {
-        function()
-          dap.clear_breakpoints()
-        end,
-        'Clear breakpoints',
-        mode = 'n',
-        opt,
-      },
-      -- stepover, stepout, stepinto
-      n = {
-        function()
-          dap.step_over()
-        end,
-        'Step over',
-        mode = 'n',
-        opt,
-      },
-      o = {
-        function()
-          dap.step_out()
-        end,
-        'Step out',
-        mode = 'n',
-        opt,
-      },
-      i = {
-        function()
-          dap.step_into()
-        end,
-        'Step into',
-        mode = 'n',
-        opt,
-      },
+  wk.add({
+    { '<leader>d', group = 'debug' },
+    {
+      '<leader>dB',
+      function()
+        dap.clear_breakpoints()
+      end,
+      desc = 'Clear breakpoints',
     },
-  }, { prefix = '<leader>' })
+    {
+      '<leader>db',
+      function()
+        dap.toggle_breakpoint()
+      end,
+      desc = 'Toggle breakpoint',
+    },
+    {
+      '<leader>dc',
+      function()
+        dap.continue()
+      end,
+      desc = 'Continue run',
+    },
+    {
+      '<leader>di',
+      function()
+        dap.step_into()
+      end,
+      desc = 'Step into',
+    },
+    {
+      '<leader>dl',
+      function()
+        osv.launch({ port = 8086 })
+      end,
+      desc = 'Start lua debug',
+    },
+    {
+      '<leader>dn',
+      function()
+        dap.step_over()
+      end,
+      desc = 'Step over',
+    },
+    {
+      '<leader>do',
+      function()
+        dap.step_out()
+      end,
+      desc = 'Step out',
+    },
+    {
+      '<leader>dq',
+      function()
+        dap.close()
+        dap.terminate()
+        dap.clear_breakpoints()
+        require('dap.repl').close()
+        require('dapui').close({})
+      end,
+      desc = 'Quit',
+    },
+    {
+      '<leader>dr',
+      function()
+        dap.repl.toggle()
+      end,
+      desc = 'Toggle repl',
+    },
+    {
+      '<leader>ds',
+      function()
+        dap.continue()
+      end,
+      desc = 'Start',
+    },
+  })
 end
 
 -- lsp 回调函数快捷键设置,use which-key plugin
