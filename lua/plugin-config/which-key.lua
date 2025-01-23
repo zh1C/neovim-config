@@ -14,4 +14,12 @@ which_key.setup({
       { '<leader>', 'SPC' },
     },
   },
+  plugins = {
+    presets = {
+      motions = false,
+    },
+  },
+  triggers = {
+    { '<auto>', mode = 'nso' },
+  },
 })
