@@ -110,6 +110,8 @@ pluginKeys.telescopeList = {
     -- 预览窗口上下滚动
     ['<C-u>'] = 'preview_scrolling_up',
     ['<C-d>'] = 'preview_scrolling_down',
+    -- which-key
+    ['<C-h>'] = 'which_key',
   },
   n = {
     -- nomal mode 关闭窗口
@@ -235,6 +237,8 @@ wk.add({
     end,
     desc = 'open lazygit',
   },
+  { '<leader>gs', ':Telescope git_status<CR>', desc = 'git status' },
+  { '<leader>gb', ':Telescope git_branches<CR>', desc = 'list git branches' },
 })
 
 -- gitsigns shortcuts
@@ -304,12 +308,18 @@ wk.add({
   { '<leader>sd', ':CocDiagnostics<CR>', desc = 'show diagnostics in window' },
   { '<leader>se', ':Telescope diagnostics<CR>', desc = 'search diagnostics' },
   { '<leader>ss', ':Telescope current_buffer_fuzzy_find<CR>', desc = 'search current buffer' },
+  { '<leader>sq', ':Telescope live_grep<CR>', desc = 'quick search' },
 })
 
 -- project shortcuts
 wk.add({
   { '<leader>p', group = 'project', icon = { icon = ' ', color = 'azure' } },
   { '<leader>pp', ':Telescope projects<CR>', desc = 'open project', icon = { icon = ' ', color = 'azure' } },
+})
+
+-- yank history
+wk.add({
+  { '<leader>y', ':Telescope registers<CR>', desc = 'open yank history', icon = { icon = ' ', color = 'orange' } },
 })
 
 -- zen-mode
