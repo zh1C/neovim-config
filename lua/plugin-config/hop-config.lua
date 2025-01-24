@@ -8,4 +8,5 @@ hop.setup({
   -- configuration
   quit_key = '<SPC>',
   multi_windows = true,
+  keys = 'etovxqpdygfblzhckisuran',
 })
