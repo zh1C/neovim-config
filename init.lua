@@ -24,7 +24,7 @@ else
   require('cmp.setup')
 
   -- -- formatting and diagnostic
-  require('format.setup')
+  -- require('format.setup')
 
   -- coc lsp cmp
   require('coc.setup')
