@@ -1,29 +1,41 @@
-local status, treesitter = pcall(require, 'nvim-treesitter.configs')
+local status, ts = pcall(require, 'nvim-treesitter')
 if not status then
   vim.notify('没有找到 nvim-treesitter')
   return
 end
 
-treesitter.setup({
-  -- 安装 language parser
-  -- :TSInstallInfo 命令查看支持的语言
-  ensure_installed = {
+-- main 分支：安装 parser（异步），不再有 ensure_installed 字段
+ts.install({
+  'go',
+  'vim',
+  'lua',
+  'python',
+  'bash',
+  'c',
+  'cpp',
+  'markdown',
+  'markdown_inline',
+  'java',
+  'json',
+  'regex',
+})
+
+-- main 分支：高亮不再是模块，需在 FileType 时手动启用
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {
     'go',
     'vim',
     'lua',
     'python',
+    'sh',
     'bash',
     'c',
     'cpp',
     'markdown',
     'java',
     'json',
-    'regex',
-    'markdown_inline',
   },
-  -- 启用代码高亮模块
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
 })

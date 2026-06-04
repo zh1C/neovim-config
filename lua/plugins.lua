@@ -144,6 +144,8 @@ lazy.setup({
   -- nvim-treesitter
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
     config = function()
       require('plugin-config.nvim-treesitter')
@@ -169,6 +171,10 @@ lazy.setup({
   -- nvim-surround
   {
     'kylechui/nvim-surround',
+    init = function()
+      -- v4: disable default keymaps so custom ones below take effect
+      vim.g.nvim_surround_no_mappings = true
+    end,
     config = function()
       require('plugin-config.surround')
     end,
@@ -228,7 +234,7 @@ lazy.setup({
   {
     'nvimdev/lspsaga.nvim',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter',
+      { 'nvim-treesitter/nvim-treesitter', branch = 'main' },
       'nvim-tree/nvim-web-devicons',
     },
     config = function()
@@ -239,7 +245,7 @@ lazy.setup({
   -------------------------format and diagnostic------------------
   -- 代码格式化
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     dependencies = 'nvim-lua/plenary.nvim',
   },
 

@@ -333,7 +333,7 @@ wk.add({
   { '<leader>il', ':LspInfo<CR>', desc = 'language server info', icon = { icon = ' ', color = 'red' } },
   { '<leader>im', ':Mason<CR>', desc = 'mason lsp', icon = { icon = ' ', color = 'red' } },
   { '<leader>in', ':NullLsInfo<CR>', desc = 'null-ls info', icon = { icon = '󰊴 ', color = 'red' } },
-  { '<leader>ip', ':TSInstallInfo<CR>', desc = 'language parser info', icon = { icon = '󰤄 ', color = 'red' } },
+  { '<leader>ip', ':checkhealth nvim-treesitter<CR>', desc = 'language parser info', icon = { icon = '󰤄 ', color = 'red' } },
   { '<leader>iu', ':Lazy<CR>', desc = 'Open Lazy', icon = { icon = '󰒲 ', color = 'red' } },
 })
 

@@ -144,9 +144,6 @@ nvim_tree.setup({
       quit_on_open = true,
     },
   },
-  system_open = {
-    cmd = 'open', -- mac 直接设置为 open
-  },
 })
 -- 自动关闭
 vim.cmd([[

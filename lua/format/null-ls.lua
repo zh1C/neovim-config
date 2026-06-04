@@ -11,7 +11,7 @@ local augroup = vim.api.nvim_create_augroup('LspFormatting', {})
 null_ls.setup({
   debug = false,
   -- you can find formatting sources from this url
-  -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
+  -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
   sources = {
     -- Formatting ---------------------
     -- StyLua formatting
@@ -36,7 +36,7 @@ null_ls.setup({
     -- formatting.google_java_format,
 
     -- diagnostics
-    -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+    -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     diagnostics.flake8,
     diagnostics.golangci_lint.with({
       extra_args = { '-E', 'gosimple', '-E', 'unused', '-E', 'errcheck', '-E', 'govet', '-E', 'staticcheck' },
